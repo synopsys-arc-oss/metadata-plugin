@@ -28,6 +28,7 @@ package com.sonyericsson.hudson.plugins.metadata.model.values;
 import com.sonyericsson.hudson.plugins.metadata.Constants;
 import com.sonyericsson.hudson.plugins.metadata.model.JsonUtils;
 import com.sonyericsson.hudson.plugins.metadata.model.MetadataContainer;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 import com.sonyericsson.hudson.plugins.metadata.model.MetadataParent;
 import com.sonyericsson.hudson.plugins.metadata.util.ExtensionUtils;
 import hudson.EnvVars;
@@ -54,9 +55,24 @@ public abstract class AbstractMetadataValue implements
     private MetadataParent<MetadataValue> parent;
     private boolean generated = false;
     private boolean exposedToEnvironment = false;
+    private MetadataDisplayOptions displayOptions = null;
 
-
-/**
+    /**
+     * Constructor with name, description and exposedToEnvironment.
+     *
+     * @param name        The name of the definitions.
+     * @param description The description of the definitions.
+     * @param exposedToEnvironment If this value should be exposed as an environment variable.
+     * @param displayOptions Display options to be used (can be null)
+     */
+    protected AbstractMetadataValue(String name, String description, boolean exposedToEnvironment, MetadataDisplayOptions displayOptions) {
+        this.name = name;
+        this.description = description;
+        this.exposedToEnvironment = exposedToEnvironment;
+        this.displayOptions = displayOptions;
+    }
+    
+    /**
      * Constructor with name, description and exposedToEnvironment.
      *
      * @param name        The name of the definitions.
@@ -64,11 +80,9 @@ public abstract class AbstractMetadataValue implements
      * @param exposedToEnvironment If this value should be exposed as an environment variable.
      */
     protected AbstractMetadataValue(String name, String description, boolean exposedToEnvironment) {
-        this.name = name;
-        this.description = description;
-        this.exposedToEnvironment = exposedToEnvironment;
+        this(name, description, exposedToEnvironment, null);
     }
-
+    
     /**
      * Constructor with name and description.
      *
@@ -115,6 +129,7 @@ public abstract class AbstractMetadataValue implements
      * @return the name.
      */
     @Exported
+    @Override
     public final synchronized String getName() {
         return name;
     }
@@ -256,6 +271,11 @@ public abstract class AbstractMetadataValue implements
     @Override
     public void setExposeToEnvironment(boolean expose) {
         exposedToEnvironment = expose;
+    }
+
+    @Override
+    public MetadataDisplayOptions getDisplayOptions() {
+        return displayOptions;
     }
 
     /**

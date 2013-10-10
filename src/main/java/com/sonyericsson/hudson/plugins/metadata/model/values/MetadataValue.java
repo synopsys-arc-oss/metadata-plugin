@@ -25,6 +25,7 @@
 package com.sonyericsson.hudson.plugins.metadata.model.values;
 
 import com.sonyericsson.hudson.plugins.metadata.model.Metadata;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 import hudson.EnvVars;
 import net.sf.json.JSONObject;
 
@@ -39,7 +40,7 @@ public interface MetadataValue extends Metadata<MetadataValue>, Cloneable, Compa
      * @return true if generated.
      */
     boolean isGenerated();
-
+    
     /**
      * Set if this value is generated or user created.
      *
@@ -47,6 +48,13 @@ public interface MetadataValue extends Metadata<MetadataValue>, Cloneable, Compa
      */
     void setGenerated(boolean generated);
 
+    /*
+     * Returns display options for MetaData.
+     * @return Display options or null 
+     * @since 1.1.0
+     */
+    MetadataDisplayOptions getDisplayOptions();
+    
     /**
      * Convert this object into a JSON object.
      * @return the JSON version.
