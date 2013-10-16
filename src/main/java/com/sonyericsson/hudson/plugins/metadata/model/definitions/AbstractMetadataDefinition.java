@@ -25,6 +25,7 @@
 package com.sonyericsson.hudson.plugins.metadata.model.definitions;
 
 import com.sonyericsson.hudson.plugins.metadata.Constants;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 import com.sonyericsson.hudson.plugins.metadata.model.MetadataParent;
 import com.sonyericsson.hudson.plugins.metadata.model.values.AbstractMetadataValue;
 import hudson.DescriptorExtensionList;
@@ -47,6 +48,7 @@ public abstract class AbstractMetadataDefinition implements
     private final String name;
     private final String description;
     private boolean exposedToEnvironment;
+    private MetadataDisplayOptions displayOptions;
 
     /**
      * Constructor with only a name.
@@ -75,9 +77,21 @@ public abstract class AbstractMetadataDefinition implements
      * @param exposedToEnvironment If this definition should be exposed as an environment variable.
      */
     public AbstractMetadataDefinition(String name, String description, boolean exposedToEnvironment) {
+        this(name, description, exposedToEnvironment, null);
+    }
+    
+    /**
+     * Constructor with name, description and exposedToEnvironment..
+     *
+     * @param name        the name of the definition.
+     * @param description the description of the definition.
+     * @param exposedToEnvironment If this definition should be exposed as an environment variable.
+     */
+    public AbstractMetadataDefinition(String name, String description, boolean exposedToEnvironment, MetadataDisplayOptions displayOptions) {
         this.name = name;
         this.description = description;
         this.exposedToEnvironment = exposedToEnvironment;
+        this.displayOptions = displayOptions;
     }
 
     /**
@@ -118,6 +132,11 @@ public abstract class AbstractMetadataDefinition implements
         exposedToEnvironment = expose;
     }
 
+    @Override
+    public MetadataDisplayOptions getDisplayOptions() {
+        return displayOptions;
+    }
+    
     /**
      * This function will generate the full name, using the chosen separator.
      * @param separator the separator to use.

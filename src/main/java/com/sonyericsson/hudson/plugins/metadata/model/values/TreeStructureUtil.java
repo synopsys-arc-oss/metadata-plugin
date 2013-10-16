@@ -75,8 +75,9 @@ public abstract class TreeStructureUtil {
      */
     public static boolean addValue(MetadataParent root, String value, String description,
                                    boolean generated, boolean exposedToEnvironment, String... path) {
+        //TODO: fix null
         StringMetadataValue sVal = new StringMetadataValue(path[path.length - 1], description, value,
-                exposedToEnvironment);
+                exposedToEnvironment, null);
         sVal.setGenerated(generated);
         return addValue(root, sVal, generated, Arrays.copyOf(path, path.length - 1));
     }
@@ -158,7 +159,7 @@ public abstract class TreeStructureUtil {
     public static TreeNodeMetadataValue createPath(String value, String description, boolean generated,
                                                    boolean exposedToEnvironment, String... path) {
         StringMetadataValue str = new StringMetadataValue(path[path.length - 1], description, value,
-                exposedToEnvironment);
+                exposedToEnvironment, null);
         str.setGenerated(generated);
         return createPath(str, generated, Arrays.copyOf(path, path.length - 1));
     }

@@ -41,6 +41,7 @@ import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.DESCRIPTI
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.GENERATED;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.EXPOSED;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.checkRequiredJsonAttribute;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 
 /**
  * Meta data containing a non-decimal number.
@@ -63,12 +64,27 @@ public class NumberMetadataValue extends AbstractMetadataValue {
      * @param value       the value.
      * @param exposedToEnvironment if this value should be exposed to the build as an
      *                      environment variable.
+     * @param displayOptions Display options
      */
     @DataBoundConstructor
-    public NumberMetadataValue(String name, String description, long value, boolean exposedToEnvironment) {
-        super(name, description, exposedToEnvironment);
+    public NumberMetadataValue(String name, String description, long value, 
+        boolean exposedToEnvironment, MetadataDisplayOptions displayOptions) {
+        super(name, description, exposedToEnvironment, displayOptions);
         this.value = value;
-
+    }
+    
+    /**
+     * Standard Constructor.
+     *
+     * @param name        the name.
+     * @param description the description.
+     * @param value       the value.
+     * @param exposedToEnvironment if this value should be exposed to the build as an
+     *                      environment variable.
+     */
+    public NumberMetadataValue(String name, String description, long value, 
+        boolean exposedToEnvironment) {
+        this(name, description, value, exposedToEnvironment, null);
     }
 
     /**

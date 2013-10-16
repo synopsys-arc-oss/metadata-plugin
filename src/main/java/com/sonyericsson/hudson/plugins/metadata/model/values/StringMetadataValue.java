@@ -41,6 +41,7 @@ import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.DESCRIPTI
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.GENERATED;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.EXPOSED;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.checkRequiredJsonAttribute;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 
 /**
  * A Meta Data value of the type String.
@@ -65,13 +66,29 @@ public class StringMetadataValue extends AbstractMetadataValue {
      * @param value       the value.
      * @param exposedToEnvironment if this value should be exposed to the build as an
      *                      environment variable.
+     * @param opts 
      */
     @DataBoundConstructor
-    public StringMetadataValue(String name, String description, String value, boolean exposedToEnvironment) {
-        super(name, description, exposedToEnvironment);
+    public StringMetadataValue(String name, String description, String value, 
+            boolean exposedToEnvironment, MetadataDisplayOptions displayOptions) {
+        super(name, description, exposedToEnvironment, displayOptions);
         this.value = value;
     }
 
+    /**
+     * Standard Constructor.
+     *
+     * @param name        the name.
+     * @param description the description.
+     * @param value       the value.
+     * @param exposedToEnvironment if this value should be exposed to the build as an
+     *                      environment variable.
+     */
+    public StringMetadataValue(String name, String description, String value, 
+            boolean exposedToEnvironment) {
+        this(name, description, value, exposedToEnvironment, null);
+    }
+    
     /**
      * Standard Constructor.
      *

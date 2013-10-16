@@ -48,12 +48,7 @@ public interface MetadataValue extends Metadata<MetadataValue>, Cloneable, Compa
      */
     void setGenerated(boolean generated);
 
-    /*
-     * Returns display options for MetaData.
-     * @return Display options or null 
-     * @since 1.1.0
-     */
-    MetadataDisplayOptions getDisplayOptions();
+    
     
     /**
      * Convert this object into a JSON object.

@@ -53,6 +53,7 @@ import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.GENERATED
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.NAME;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.VALUE;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.checkRequiredJsonAttribute;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 
 /**
  * Meta data with the value of a {@link java.util.Date}.
@@ -145,8 +146,9 @@ public class DateMetadataValue extends AbstractMetadataValue {
      */
     @DataBoundConstructor
     public DateMetadataValue(String name, String description, int year,
-                             int month, int day, TimeDetails details, boolean exposedToEnvironment) {
-        super(name, description, exposedToEnvironment);
+                             int month, int day, TimeDetails details, 
+                             boolean exposedToEnvironment, MetadataDisplayOptions displayOptions) {
+        super(name, description, exposedToEnvironment, displayOptions);
         value = Calendar.getInstance();
 
 
@@ -160,6 +162,23 @@ public class DateMetadataValue extends AbstractMetadataValue {
         }
     }
 
+    /**
+     * Standard Constructor.
+     *
+     * @param name                 the name
+     * @param year                 the default year.
+     * @param month                the default month of the year.
+     * @param day                  the default day of the month.
+     * @param description          the description.
+     * @param details              the optional time details, hour/minute/second.
+     * @param exposedToEnvironment if this value should be exposed to the build as an
+     *                             environment variable.
+     */
+    public DateMetadataValue(String name, String description, int year,
+                             int month, int day, TimeDetails details, 
+                             boolean exposedToEnvironment) {
+        this(name, description, year, month, day, details, exposedToEnvironment, null);
+    }
 
     /**
      * Standard Constructor.

@@ -72,7 +72,7 @@ public class NumberMetadataDefinition extends AbstractMetadataDefinition {
             value = Long.parseLong((String)o);
         }
         NumberMetadataValue metadataValue =
-                new NumberMetadataValue(getName(), getDescription(), value, isExposedToEnvironment());
+                new NumberMetadataValue(getName(), getDescription(), value, isExposedToEnvironment(), getDisplayOptions());
         return metadataValue;
     }
 

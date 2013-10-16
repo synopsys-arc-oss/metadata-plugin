@@ -71,7 +71,7 @@ public class StringMetadataDefinition extends AbstractMetadataDefinition {
             value = (String)o;
         }
         StringMetadataValue metadataValue =
-                new StringMetadataValue(getName(), getDescription(), value, isExposedToEnvironment());
+                new StringMetadataValue(getName(), getDescription(), value, isExposedToEnvironment(), getDisplayOptions());
         return metadataValue;
     }
 

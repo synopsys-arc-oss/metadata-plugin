@@ -194,9 +194,10 @@ public final class ParentUtil {
                     //some of the children failed to be merged, return them to sender.
                     Metadata treeNode = null;
                     if (value instanceof MetadataValue) {
+                        MetadataValue metadataValue = (MetadataValue) value;
                         LinkedList<MetadataValue> list = (LinkedList<MetadataValue>)leftOvers;
-                        treeNode = new TreeNodeMetadataValue(value.getName(), value.getDescription(),
-                                list, value.isExposedToEnvironment());
+                        treeNode = new TreeNodeMetadataValue(metadataValue.getName(), metadataValue.getDescription(),
+                                list, metadataValue.isExposedToEnvironment(), metadataValue.getDisplayOptions());
                     } else if (value instanceof MetadataDefinition) {
                         LinkedList<MetadataDefinition> list = (LinkedList<MetadataDefinition>)leftOvers;
                         treeNode = new TreeNodeMetadataDefinition(value.getName(), value.getDescription(), list);

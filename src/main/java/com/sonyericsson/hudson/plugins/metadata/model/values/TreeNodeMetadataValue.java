@@ -51,6 +51,7 @@ import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.NAME;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.GENERATED;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.EXPOSED;
 import static com.sonyericsson.hudson.plugins.metadata.model.JsonUtils.checkRequiredJsonAttribute;
+import com.sonyericsson.hudson.plugins.metadata.model.MetadataDisplayOptions;
 
 /**
  * Meta data containing other meta data values. Used to create tree structures of data.
@@ -77,12 +78,27 @@ public class TreeNodeMetadataValue extends AbstractMetadataValue implements Meta
      * @param children    its children.
      * @param exposedToEnvironment if this value should be exposed to the build as an
      *                      environment variable.
+     * @param displayOptions Display Options
      */
     @DataBoundConstructor
     public TreeNodeMetadataValue(String name, String description, List<MetadataValue> children,
-                                 boolean exposedToEnvironment) {
-        super(name, description, exposedToEnvironment);
+                                 boolean exposedToEnvironment, MetadataDisplayOptions displayOptions) {
+        super(name, description, exposedToEnvironment, displayOptions);
         setChildren(children);
+    }
+    
+    /**
+     * Standard Constructor.
+     *
+     * @param name        the name.
+     * @param description the description
+     * @param children    its children.
+     * @param exposedToEnvironment if this value should be exposed to the build as an
+     *                      environment variable.
+     */
+    public TreeNodeMetadataValue(String name, String description, List<MetadataValue> children,
+                                 boolean exposedToEnvironment) {
+        this(name, description, children, exposedToEnvironment, null);
     }
 
     /**

@@ -30,7 +30,9 @@
             <td class="pane-header">Value</td>
         </tr>
         <j:forEach var="child" items="${it.values}">
-            <st:include it="${child}" page="display.jelly" />
+           <j:if test="${child.displayOptions != null and child.displayOptions.displayedOnSummary}">
+               <st:include it="${child}" page="display.jelly" displayType="summary"/>
+           </j:if>
         </j:forEach>
     </table>
 </j:jelly>

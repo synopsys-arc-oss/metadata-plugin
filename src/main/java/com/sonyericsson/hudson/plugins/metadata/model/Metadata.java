@@ -99,4 +99,11 @@ public interface Metadata<P extends Metadata> {
      * @return the full name as a String array instead of a String.
      */
     String[] getFullPath();
+    
+    /**
+     * Returns display options for MetaData.
+     * @return Display options or null (not configured)
+     * @since 1.1.0
+     */
+    MetadataDisplayOptions getDisplayOptions();
 }
