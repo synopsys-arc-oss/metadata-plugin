@@ -29,7 +29,7 @@ import hudson.model.Descriptor;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
- * Generic class for configuration of display options;
+ * Generic class for configuration of metadata display options.
  * @author Oleg Nenashev <nenashev@synopsys.com>, Synopsys Inc.
  * @since 1.1.0
  */
@@ -42,7 +42,7 @@ public class MetadataDisplayOptions implements Describable<MetadataDisplayOption
     }
     
     /**
-     * Enables displaying of value in the summary box.
+     * Enables displaying of value in summary boxes of jobs and slaves.
      * @return true if value should be displayed on Summary
      * @since 1.1.0
      */
